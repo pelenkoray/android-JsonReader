@@ -16,6 +16,7 @@ public class HandleJSON {
 	private String urlString = null;
 
 	public volatile boolean parsingComplete = true;
+	private static java.util.Scanner scanner;
 
 	public HandleJSON(String url) {
 		this.urlString = url;
@@ -91,7 +92,8 @@ public class HandleJSON {
 	}
 
 	static String convertStreamToString(java.io.InputStream is) {
-		java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+		scanner = new java.util.Scanner(is);
+		java.util.Scanner s = scanner.useDelimiter("\\A");
 		return s.hasNext() ? s.next() : "";
 	}
 }
